@@ -24,16 +24,44 @@ public class MainActivity extends AppCompatActivity {
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder dig = new AlertDialog.Builder(MainActivity.this);
-                dig.setTitle("teste");
-                dig.setMessage(edtText.getText().toString());
-                dig.setCancelable(false);
-                dig.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                int i=0;
+                try {
+                    i = Integer.parseInt(edtText.getText().toString());
+
+                    AlertDialog.Builder dig = new AlertDialog.Builder(MainActivity.this);
+
+                    if (i <= 12) {
+                        dig.setMessage("Criança");
+                    } else if (i > 12 && i < 18) {
+                        dig.setMessage("Adolescente");
+                    } else if (i >= 18 && i < 60) {
+                        dig.setMessage("Adulto");
+                    } else {
+                        dig.setMessage("Idoso");
 
                     }
-                }).show();
+                    dig.setTitle("Idade");
+                    dig.setCancelable(false);
+                    dig.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
+                }catch (Exception e){
+                    AlertDialog.Builder dig = new AlertDialog.Builder(MainActivity.this);
+                    dig.setTitle("Idade");
+                    dig.setMessage("Digite um valor valido!");
+                    dig.setCancelable(false);
+                    dig.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    }).show();
+                }
+
+
 
 
             }
